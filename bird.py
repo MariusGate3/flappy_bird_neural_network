@@ -10,6 +10,7 @@ class Bird:
     def __init__(self, xPos, yPos, radius):
 
         self.score = 0
+        self.jump_power = -7
         self.scoreText = pygame.font.Font(None, 20)
         self.radius = radius
         self.color = (
@@ -52,7 +53,7 @@ class Bird:
 
     def jump(self):
         if self.can_jump():
-            self.velocity = -8
+            self.velocity = self.jump_power
             self.flap = True
 
     def closest_pipe(self, pipes):

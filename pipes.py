@@ -8,7 +8,7 @@ class Pipe:
         self.surface = pygame.Surface((width, height))
         self.rect = self.surface.get_rect(topleft=(x, y))
         self.surface.fill("white")
-        self.pipe_gap = 175
+        self.pipe_gap = 140
 
 
 class Pipes:
@@ -17,7 +17,7 @@ class Pipes:
         self.bottom_pipes = []
         self.pipe_spacing = 400
         self.pipe_width = 75
-        self.pipes_speed = 2
+        self.pipes_speed = 5
 
         for i in range(7):
             self.add_pipe(100 + (i + 1) * self.pipe_spacing)
@@ -52,6 +52,12 @@ class Pipes:
             and self.top_pipes[-1].rect.x < config.window_x - self.pipe_spacing
         ):
             self.add_pipe(config.window_x + self.pipe_spacing)
+            random_value = random.uniform(0, 1)
+            if random_value < 0.5:
+                self.add_pipe(config.window_x + self.pipe_spacing * 2)
+            elif random_value > 0.9:
+                self.add_pipe(config.window_x + self.pipe_spacing * 2)
+                self.add_pipe(config.window_x + self.pipe_spacing * 3)
 
     def check_collision(self, bird):
         # Check collision with top pipes
